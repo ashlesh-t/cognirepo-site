@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CogniRepo — Local Cognitive Infrastructure for AI Agents</title>
+  <meta name="description" content="CogniRepo gives AI agents persistent semantic memory, a knowledge graph, AST indexing, and an MCP server — so they stop forgetting everything between sessions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- ───── NAV ───── -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="logo-icon">⬡</span>
+      <span>CogniRepo</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#results">Results</a>
+      <a href="https://github.com/ashlesh-t/cognirepo" target="_blank" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ───── HERO ───── -->
+<section class="hero" id="hero">
+  <div class="noise"></div>
+  <div class="grid-bg"></div>
+  <div class="hero-glow glow-1"></div>
+  <div class="hero-glow glow-2"></div>
+
+  <div class="hero-inner">
+    <div class="badge reveal">v0.1.0 · Open Source · AGPL-3.0</div>
+    <h1 class="hero-title reveal reveal-delay-1">
+      Local Cognitive<br/>
+      <span class="gradient-text">Infrastructure</span><br/>
+      for AI Agents
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      CogniRepo gives AI agents persistent semantic memory, a knowledge graph, AST indexing,
+      and an MCP server — so they stop forgetting everything between sessions.
+    </p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="https://github.com/ashlesh-t/cognirepo" target="_blank" class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        View on GitHub
+      </a>
+      <a href="#how-it-works" class="btn btn-ghost">See how it works ↓</a>
+    </div>
+
+    <div class="hero-code reveal reveal-delay-4">
+      <div class="code-bar">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-yellow"></span>
+        <span class="dot dot-green"></span>
+        <span class="code-bar-title">terminal</span>
+      </div>
+      <pre class="code-block"><span class="c-comment"># One-command setup</span>
+<span class="c-cmd">pip install</span> <span class="c-str">cognirepo</span>
+<span class="c-cmd">cognirepo setup</span>
+
+<span class="c-comment"># Index your codebase</span>
+<span class="c-cmd">cognirepo index-repo</span> <span class="c-str">.</span>
+
+<span class="c-comment"># Start the MCP server — works with Claude, Cursor, Gemini</span>
+<span class="c-cmd">cognirepo prime</span></pre>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>scroll</span>
+  </div>
+</section>
+
+<!-- ───── STATS ───── -->
+<section class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat reveal">
+      <span class="stat-num" data-target="75">0</span><span class="stat-suffix">%</span>
+      <span class="stat-label">token overhead cut</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat reveal reveal-delay-1">
+      <span class="stat-num" data-target="4">0</span><span class="stat-suffix">x</span>
+      <span class="stat-label">faster context retrieval</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat reveal reveal-delay-2">
+      <span class="stat-num" data-target="384">0</span><span class="stat-suffix">d</span>
+      <span class="stat-label">embedding vectors</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat reveal reveal-delay-3">
+      <span class="stat-num" data-target="3">0</span><span class="stat-suffix"></span>
+      <span class="stat-label">AI agents supported</span>
+    </div>
+  </div>
+</section>
+
+<!-- ───── HOW IT WORKS ───── -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-label reveal">How it works</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      Context that <span class="gradient-text">persists</span> across sessions
+    </h2>
+    <p class="section-sub reveal reveal-delay-2">
+      Every AI session starts cold. CogniRepo fixes that by building a cognitive layer
+      between your codebase and your AI agents — memory that survives process restarts.
+    </p>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <div class="step-body">
+          <h3>Index your codebase</h3>
+          <p>AST parser extracts symbols, call graphs, and doc strings across Python, JS, TS, Go, Rust, Java. Stored in a FAISS vector index + NetworkX knowledge graph.</p>
+          <code class="inline-code">cognirepo index-repo .</code>
+        </div>
+      </div>
+      <div class="step-connector reveal"></div>
+      <div class="step reveal reveal-delay-1">
+        <div class="step-num">02</div>
+        <div class="step-body">
+          <h3>AI agents query via MCP</h3>
+          <p>The MCP server exposes 20+ tools. Agents call <code>context_pack()</code> to get packed, token-efficient context instead of reading raw files.</p>
+          <code class="inline-code">context_pack("how does auth work?")</code>
+        </div>
+      </div>
+      <div class="step-connector reveal reveal-delay-1"></div>
+      <div class="step reveal reveal-delay-2">
+        <div class="step-num">03</div>
+        <div class="step-body">
+          <h3>Memory persists between sessions</h3>
+          <p>Decisions, errors, episode logs, and user preferences survive session boundaries. Next agent picks up exactly where the last one stopped.</p>
+          <code class="inline-code">get_last_context() → resume instantly</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── FEATURES ───── -->
+<section class="section section-dark" id="features">
+  <div class="container">
+    <div class="section-label reveal">Features</div>
+    <h2 class="section-title reveal reveal-delay-1">Everything an AI agent needs to <span class="gradient-text">remember</span></h2>
+
+    <div class="features-grid">
+
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <h3>Semantic Memory</h3>
+        <p>FAISS-powered vector store with all-MiniLM-L6-v2 embeddings. Similarity search across codebase symbols, docs, and episodic logs. Cold-start degrades gracefully to pure vector search.</p>
+        <div class="feature-tag">FAISS · 384-dim</div>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><circle cx="4" cy="6" r="2"/><circle cx="20" cy="6" r="2"/><circle cx="4" cy="18" r="2"/><circle cx="20" cy="18" r="2"/><line x1="6" y1="7" x2="10" y2="10.5"/><line x1="18" y1="7" x2="14" y2="10.5"/><line x1="6" y1="17" x2="10" y2="13.5"/><line x1="18" y1="17" x2="14" y2="13.5"/></svg>
+        </div>
+        <h3>Knowledge Graph</h3>
+        <p>NetworkX DiGraph tracks IMPORTS / CALLS_API / SHARES_SCHEMA / CHILD_OF edges across repos. Multi-repo org graph with cross-service traversal. AI agents add DISCOVERED edges dynamically.</p>
+        <div class="feature-tag">NetworkX · Multi-repo</div>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>AST Indexer</h3>
+        <p>Tree-sitter parses Python, JS, TS, Go, Rust, Java. Extracts functions, classes, symbols, and call relationships. <code>lookup_symbol()</code> finds any symbol across the whole repo in milliseconds.</p>
+        <div class="feature-tag">tree-sitter · 6 languages</div>
+      </div>
+
+      <div class="feature-card reveal">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>MCP Server</h3>
+        <p>FastMCP stdio transport exposes 20+ tools. Works with Claude Code, Cursor, Gemini — any agent that speaks Model Context Protocol. Stateless tools, composable at the caller level.</p>
+        <div class="feature-tag">FastMCP · stdio</div>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-1">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Episodic Memory</h3>
+        <p>Timestamped log of decisions, errors, and milestones. <code>episodic_search()</code> lets agents recall past bugs and solutions. <code>record_decision()</code> writes architectural choices that survive forever.</p>
+        <div class="feature-tag">Persistent · Searchable</div>
+      </div>
+
+      <div class="feature-card reveal reveal-delay-2">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+        </div>
+        <h3>Hybrid Retrieval</h3>
+        <p>Blends vector score (0.5) + graph score (0.3) + behaviour score (0.2). Confidence gate filters noise — code hits must score ≥0.25 or retrieval returns a structured failure, never README noise.</p>
+        <div class="feature-tag">Weighted blend · Config-overridable</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───── ARCHITECTURE ───── -->
+<section class="section" id="architecture">
+  <div class="container">
+    <div class="section-label reveal">Architecture</div>
+    <h2 class="section-title reveal reveal-delay-1">Clean layers, <span class="gradient-text">no magic</span></h2>
+    <p class="section-sub reveal reveal-delay-2">
+      Tools are the single entry point. All retrieval goes through <code>hybrid.py</code>.
+      All storage lives under <code>.cognirepo/</code>. No surprises.
+    </p>
+
+    <div class="arch-diagram reveal reveal-delay-3">
+      <!-- PLACEHOLDER — drop your architecture image at public/assets/architecture.png -->
+      <div class="arch-placeholder">
+        <img
+          src="public/assets/architecture.png"
+          alt="CogniRepo Architecture Diagram"
+          class="arch-img"
+          onerror="this.parentElement.classList.add('no-img')"
+        />
+        <div class="arch-placeholder-inner">
+          <div class="arch-label-top">AI Agents (Claude · Cursor · Gemini)</div>
+          <div class="arch-row">
+            <div class="arch-box arch-mcp">MCP Server<br/><small>FastMCP · stdio</small></div>
+          </div>
+          <div class="arch-arrows">
+            <div class="arch-arrow"></div>
+            <div class="arch-arrow"></div>
+            <div class="arch-arrow"></div>
+          </div>
+          <div class="arch-row arch-row-3">
+            <div class="arch-box arch-mem">Semantic Memory<br/><small>FAISS · 384d</small></div>
+            <div class="arch-box arch-graph">Knowledge Graph<br/><small>NetworkX</small></div>
+            <div class="arch-box arch-ast">AST Index<br/><small>tree-sitter</small></div>
+          </div>
+          <div class="arch-line"></div>
+          <div class="arch-row">
+            <div class="arch-box arch-storage">Storage: <code>.cognirepo/</code></div>
+          </div>
+          <div class="arch-label-top arch-label-bottom">Your Codebase</div>
+        </div>
+      </div>
+      <p class="arch-caption">
+        Place <code>public/assets/architecture.png</code> to replace this diagram with a custom graphic.
+      </p>
+    </div>
+
+    <div class="retrieval-formula reveal">
+      <div class="formula-label">Hybrid retrieval score formula</div>
+      <div class="formula">
+        <span class="f-var">final</span>
+        <span class="f-eq">=</span>
+        <span class="f-weight">0.5</span> <span class="f-op">×</span> <span class="f-term">vector_score</span>
+        <span class="f-op">+</span>
+        <span class="f-weight">0.3</span> <span class="f-op">×</span> <span class="f-term">graph_score</span>
+        <span class="f-op">+</span>
+        <span class="f-weight">0.2</span> <span class="f-op">×</span> <span class="f-term">behaviour_score</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── RESULTS ───── -->
+<section class="section section-dark" id="results">
+  <div class="container">
+    <div class="section-label reveal">Results</div>
+    <h2 class="section-title reveal reveal-delay-1">What it actually <span class="gradient-text">delivers</span></h2>
+
+    <div class="results-grid">
+
+      <div class="result-card reveal">
+        <div class="result-icon">⚡</div>
+        <h3>75% token reduction</h3>
+        <p>Agents retrieve only relevant, packed context instead of dumping entire files. <code>context_pack()</code> greedily fills a token budget — no wasted context window.</p>
+      </div>
+
+      <div class="result-card reveal reveal-delay-1">
+        <div class="result-icon">🔁</div>
+        <h3>Zero cold-start friction</h3>
+        <p><code>get_last_context()</code> + <code>get_session_brief()</code> restore full session state in &lt;1s. New agent picks up mid-thought from where the previous one stopped.</p>
+      </div>
+
+      <div class="result-card reveal reveal-delay-2">
+        <div class="result-icon">🧠</div>
+        <h3>Cross-agent memory sharing</h3>
+        <p>Snapshots at <code>~/.cognirepo/&lt;repo&gt;/last_context.json</code> are shared across Claude, Gemini, and Cursor running on the same machine simultaneously.</p>
+      </div>
+
+      <div class="result-card reveal">
+        <div class="result-icon">🌐</div>
+        <h3>Org-wide codebase search</h3>
+        <p><code>org_wide_search()</code> spans all registered repos in one query. Cross-service call graph traversal maps how microservices call each other — discovered dynamically by agents.</p>
+      </div>
+
+      <div class="result-card reveal reveal-delay-1">
+        <div class="result-icon">🛡️</div>
+        <h3>OOM-safe at any repo size</h3>
+        <p>Circuit breaker in <code>memory/circuit_breaker.py</code> monitors RSS and opens before the process OOMs. Degrades gracefully to pure vector search when graph is unavailable.</p>
+      </div>
+
+      <div class="result-card reveal reveal-delay-2">
+        <div class="result-icon">🔍</div>
+        <h3>Symbol lookup in milliseconds</h3>
+        <p>AST reverse index maps every function, class, and symbol to its exact file:line. <code>lookup_symbol("fn")</code> is faster than any grep — no scanning, direct O(1) lookup.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───── DEMO / TOOLS ───── -->
+<section class="section" id="demo">
+  <div class="container">
+    <div class="section-label reveal">MCP Tools</div>
+    <h2 class="section-title reveal reveal-delay-1">20+ tools, one <span class="gradient-text">protocol</span></h2>
+
+    <div class="tools-list">
+      <div class="tool-group reveal">
+        <div class="tool-group-label">Session</div>
+        <div class="tool-chips">
+          <span class="chip">get_session_brief()</span>
+          <span class="chip">get_last_context()</span>
+          <span class="chip">get_user_profile()</span>
+          <span class="chip">get_error_patterns()</span>
+        </div>
+      </div>
+      <div class="tool-group reveal reveal-delay-1">
+        <div class="tool-group-label">Code Navigation</div>
+        <div class="tool-chips">
+          <span class="chip">lookup_symbol()</span>
+          <span class="chip">who_calls()</span>
+          <span class="chip">context_pack()</span>
+          <span class="chip">architecture_overview()</span>
+        </div>
+      </div>
+      <div class="tool-group reveal reveal-delay-2">
+        <div class="tool-group-label">Memory</div>
+        <div class="tool-chips">
+          <span class="chip">store_memory()</span>
+          <span class="chip">retrieve_memory()</span>
+          <span class="chip">log_episode()</span>
+          <span class="chip">episodic_search()</span>
+          <span class="chip">record_decision()</span>
+        </div>
+      </div>
+      <div class="tool-group reveal reveal-delay-3">
+        <div class="tool-group-label">Org Graph</div>
+        <div class="tool-chips">
+          <span class="chip">org_wide_search()</span>
+          <span class="chip">org_dependencies()</span>
+          <span class="chip">cross_repo_traverse()</span>
+          <span class="chip">link_repos()</span>
+          <span class="chip">dependency_graph()</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-box reveal">
+      <h3>Ready to give your AI agents a memory?</h3>
+      <p>One pip install. One cognirepo setup. Works with Claude Code, Cursor, and Gemini out of the box.</p>
+      <div class="cta-actions">
+        <a href="https://github.com/ashlesh-t/cognirepo" target="_blank" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.341-3.369-1.341-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          Star on GitHub
+        </a>
+        <a href="https://github.com/ashlesh-t/cognirepo#readme" target="_blank" class="btn btn-ghost">Read the docs →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───── FOOTER ───── -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <span class="nav-logo">
+        <span class="logo-icon">⬡</span>
+        CogniRepo
+      </span>
+      <span class="footer-copy">AGPL-3.0 · Built by <a href="https://github.com/ashlesh-t" target="_blank">ashlesh-t</a></span>
+    </div>
+    <div class="footer-right">
+      <a href="https://github.com/ashlesh-t/cognirepo" target="_blank">GitHub</a>
+      <a href="https://github.com/ashlesh-t/cognirepo/issues" target="_blank">Issues</a>
+      <a href="https://github.com/ashlesh-t/cognirepo#readme" target="_blank">Docs</a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
